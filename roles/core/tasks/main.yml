@@ -1,0 +1,16 @@
+---
+- name: Installs CORE packages
+  yum: pkg={{ item }} state=latest
+  with_items:
+    - mc
+    - yum-utils
+    - openssh-clients
+    - nano
+    - policycoreutils-python
+    - net-tools
+    - mailx
+    - gcc
+    - bzip2
+    - kernel-devel
+    - MySQL-python
+

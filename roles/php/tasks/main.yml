@@ -1,0 +1,40 @@
+---
+- name: Installs PHP packages
+  yum: pkg={{ item }} state=latest
+  with_items:
+    - php
+    - php-fpm
+    - php-cli
+    - php-common
+    - php-gd
+    - php-intl
+    - php-mbstring
+    - php-mcrypt
+    - php-pear
+    - php-xml
+    - php-xmlrpc
+    - php-mysqlnd
+    - php-mssql
+    - php-pdo
+    - php-ldap
+    - php-process
+    - php-snmp
+    - php-pecl-geoip
+    - php-pecl-mongo
+    - php-pecl-imagick
+    - php-pecl-memcache
+    - php-opcache
+    - php-pecl-geoip
+    - php-soap
+    - php-pecl-runkit
+    - php-ioncube-loader
+
+- name: /etc/php.ini deploy
+  template: src='/tmp/packer-provisioner-ansible-local/roles/php/files/php.ini' dest='/etc/php.ini' owner=root group=root mode=0644
+
+- name: /etc/php-fpm.d/www.conf deploy
+  template: src='/tmp/packer-provisioner-ansible-local/roles/php/files/www.conf' dest='/etc/php-fpm.d/www.conf' owner=root group=root mode=0644
+
+#- name: PHP | Start php-fpm
+#  service: name=php-fpm.service state=started enabled=yes
+

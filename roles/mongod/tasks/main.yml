@@ -1,0 +1,10 @@
+---
+- name: Installs mongodb-server server
+  yum: name=mongodb-server state=latest
+
+- name: Installs mongodb server
+  yum: name=mongodb state=latest
+
+- name: Enable mongodb-server service
+  service: name=mongod enabled=yes
+

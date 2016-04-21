@@ -1,0 +1,14 @@
+---
+- hosts: all
+  sudo: yes
+  gather_facts: yes
+
+  roles:
+    - core
+    - remi
+    - php
+    - memcached
+    - nginx
+    - ntpd
+    - mongod
+    - mariadb
