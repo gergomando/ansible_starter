@@ -9,7 +9,6 @@ events {
     worker_connections  1024;
 }
 
-
 http {
     include       /etc/nginx/mime.types;
     default_type  application/octet-stream;
@@ -40,6 +39,6 @@ http {
     gzip_disable "MSIE [1-6].(?!.*SV1)";
     gzip_vary on;
     
-    include /etc/nginx/conf.d/*.conf;
+    include /srv/web/host/*.conf;
     fastcgi_ignore_client_abort on;
 }

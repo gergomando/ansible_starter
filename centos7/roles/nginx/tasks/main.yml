@@ -1,0 +1,30 @@
+---
+- name: Installs nginx web server
+  yum: name=nginx state=latest
+
+- name: Enable nginx service
+  service: name=nginx enabled=yes
+
+- name: Creates directory (/srv/web/www)
+  file: path=/srv/web/www state=directory owner=nginx group=nginx recurse=yes
+
+- name: Creates directory (/srv/web/host)
+  file: path=/srv/web/host state=directory owner=root group=root recurse=yes
+
+- name: Creates directory (/srv/web/log)
+  file: path=/srv/web/log state=directory owner=nginx group=nginx recurse=yes
+
+- name: nginx.conf deploy
+  template: src='nginx.conf.j2' dest='/etc/nginx/nginx.conf' owner=root group=root mode=0644
+
+- name: laravel.conf deploy
+  template: src='laravel.conf' dest='/srv/web/host/laravel_sample.conf' owner=root group=root mode=0644
+
+- name: native.conf deploy
+  template: src='native.conf' dest='/srv/web/host/native_sample.conf' owner=root group=root mode=0644
+
+- name: Creates directory (/srv/web/www/sample)
+  file: path=/srv/web/www/sample state=directory owner=nginx group=nginx recurse=yes
+
+- name: sample site deploy
+  template: src='index.php' dest='/srv/web/www/sample/index.php' owner=root group=root mode=0644

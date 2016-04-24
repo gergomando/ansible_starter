@@ -1,0 +1,1 @@
+<?php echo "<h2>Successfully created webhost!</h2>" ?>

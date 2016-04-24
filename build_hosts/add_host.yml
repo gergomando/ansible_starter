@@ -1,0 +1,4 @@
+---
+ tasks:
+  - name: add host
+    add_host: hostname=188.166.23.333  groups=just_created

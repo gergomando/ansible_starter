@@ -1,0 +1,20 @@
+---
+- name: MariaDB repo file deploy
+  template: src='mariadb.repo' dest='/etc/yum.repos.d/mariadb.repo' owner=root group=root mode=0644
+
+- name: Installs MariaDB-server  server
+  yum: name=MariaDB-server state=latest
+
+- name: Installs MariaDB-client server
+  yum: name=MariaDB-client state=latest
+
+- name: MySQL | Ensure MySQL daemon is running
+  service: name=mysql state=started
+
+# 'localhost' needs to be last for idempotency.
+- name: Update MySQL root password for localhost root account.
+  mysql_user:
+    name: "root"
+    host: "{{ item }}"
+    password: "{{ mysql_password }}"
+  with_items: mysql_root_hosts.stdout_lines

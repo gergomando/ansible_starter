@@ -1,0 +1,13 @@
+---
+# use --extra-vars '{"user":"...", ....}'
+- hosts: all
+  sudo: yes
+  tasks:
+   - name: add new user
+     command: adduser '{{user}}'
+
+   - name: set password to new user
+     shell: echo -e "{{password}}\n{{password}}" | passwd '{{user}}'
+
+   - name: add sudo privileges to new user 
+     command: gpasswd -a '{{user}}' wheel

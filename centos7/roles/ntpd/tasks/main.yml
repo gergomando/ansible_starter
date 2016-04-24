@@ -8,7 +8,7 @@
 
 - name: remove localtime
   file: path=/etc/localtime state=absent
-  
+
 - name: make symlink to Budapest
   file: src=/usr/share/zoneinfo/Europe/Budapest dest=/etc/localtime state=link force=yes mode=0644
 
